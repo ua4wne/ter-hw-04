@@ -47,43 +47,7 @@
 
 5. Сгенерируйте документацию к модулю с помощью terraform-docs.
 
-## Requirements
-
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.8.4 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_yandex"></a> [yandex](#provider\_yandex) | n/a |
-
-## Modules
-
-No modules.
-
-## Resources
-
-| Name | Type |
-|------|------|
-| [yandex_vpc_network.develop](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs/resources/vpc_network) | resource |
-| [yandex_vpc_subnet.develop](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs/resources/vpc_subnet) | resource |
-
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_cidr"></a> [cidr](#input\_cidr) | CIDR | `string` | n/a | yes |
-| <a name="input_env_name"></a> [env\_name](#input\_env\_name) | environment name | `string` | n/a | yes |
-| <a name="input_zone"></a> [zone](#input\_zone) | zone | `string` | n/a | yes |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| <a name="output_id"></a> [id](#output\_id) | n/a |
-| <a name="output_network_id"></a> [network\_id](#output\_network\_id) | n/a |
+>Ответ: [документацию](./src/vpc/README.md) получил с помощью команды `docker run --rm --volume "$(pwd):/terraform-docs" -u $(id -u) quay.io/terraform-docs/terraform-docs:0.19.0 markdown /terraform-docs > README.md`
 
 
 ## Задача 3
