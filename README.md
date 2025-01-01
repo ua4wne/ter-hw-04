@@ -51,3 +51,24 @@
 
 
 ## Задача 3
+
+1. Выведите список ресурсов в стейте.
+
+![state](task3/state.png)
+
+2. Полностью удалите из стейта модуль vpc.
+
+![rm_vpc](task3/rm_vpc.png)
+
+3. Полностью удалите из стейта модуль vm.
+
+![rm_vm](task3/rm_vm.png)
+
+4. Импортируйте всё обратно. Проверьте terraform plan. Значимых(!!) изменений быть не должно. Приложите список выполненных команд и скриншоты процессов.
+
+![import_vpc](task3/import_vpc.png)
+![import_sub](task3/import_sub.png)
+![import_vm](task3/import_vm.png)
+![plan](task3/plan.png)
+
+## Задача 4*
