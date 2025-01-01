@@ -72,3 +72,11 @@
 ![plan](task3/plan.png)
 
 ## Задача 4*
+
+1. Измените модуль [vpc](./src/vpc/main.tf) так, чтобы он мог создать подсети во всех зонах доступности, переданных в переменной типа list(object) при вызове модуля.
+
+![vpc_prod](task4/vpc_prod.png)
+![apply](task4/apply.png)
+![result](task4/result.png)
+
+## Задача 5*
