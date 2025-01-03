@@ -116,3 +116,27 @@
 ![backet](task6/backet.png)
 
 ## Задача 7*
+
+1. Разверните у себя локально vault, используя [docker-compose.yml](./task7/docker-compose.yml) в проекте.
+
+2. Для входа в web-интерфейс и авторизации terraform в vault используйте токен "education".
+
+![login](task7/login.png)
+
+3. Создайте новый секрет по пути http://127.0.0.1:8200/ui/vault/secrets/secret/create Path: example secret data key: test secret data value: congrats!
+
+![secret](task7/secret.png)
+
+4. Считайте этот секрет с помощью terraform и выведите его в output.
+
+>Ответ [main.tf](./task7/main.tf)
+
+![read](task7/read.png)
+
+5. Попробуйте самостоятельно разобраться в документации и записать новый секрет в vault с помощью terraform.
+
+>Ответ [main.tf](./task7/main.tf)
+
+![apply](task7/apply.png)
+![secrets](task7/secrets.png)
+![new](task7/new.png)
