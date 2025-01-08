@@ -1,142 +1,71 @@
 ## Задача 1
 
-1. Возьмите из демонстрации к лекции готовый код для создания с помощью двух вызовов remote-модуля -> двух ВМ, относящихся к разным проектам(marketing и analytics) используйте labels для обозначения принадлежности.
+1. Возьмите код:
+ - из ДЗ к лекции 4,
+ - из демо к лекции 4.
 
-![label1](task1/label1.png)
-![label2](task1/label2.png)
+2. Проверьте код с помощью tflint и checkov. Вам не нужно инициализировать этот проект.
 
-В файле [cloud-init.yml](./src/cloud-init.yml) необходимо использовать переменную для ssh-ключа вместо хардкода. Передайте ssh-ключ в функцию template_file в блоке vars ={} . 
+![hw4](task1/hw4.png)
+![demo](task1/demo.png)
+![hw-check1](task1/hw-check1.png)
+![demo-check1](task1/demo-check1.png)
+![demo-check2](task1/demo-check2.png)
+![demo-check3](task1/demo-check3.png)
+![demo-check4](task1/demo-check4.png)
 
-![tempvars](task1/tempvars.png)
+3. Перечислите, какие типы ошибок обнаружены в проекте (без дублей).
 
-2. Добавьте в файл [cloud-init.yml](./src/cloud-init.yml) установку nginx.
-
-![packages](task1/packages.png)
-
-3. Предоставьте скриншот подключения к консоли и вывод команды sudo nginx -t
-
-![nginx](task1/nginx.png)
-
-скриншот консоли ВМ yandex cloud с их метками.
-
-![vm1](task1/vm1.png)
-![vm2](task1/vm2.png)
-
- Откройте terraform console и предоставьте скриншот содержимого модуля.
-
- ![console](task1/console.png)
+>Ответ: не указаны ограничения по версиям при объявлении провайдеров, объявлены не используемые переменные, в объявлении модулей указаны ссылки на git-репозитории без указания конкретного коммита
 
 ## Задача 2
 
-1. Напишите локальный модуль [vpc](./src/vpc/main.tf), который будет создавать 2 ресурса: одну сеть и одну подсеть в зоне, объявленной при вызове модуля, например: ru-central1-a.
+1. Возьмите ваш GitHub-репозиторий с выполненным ДЗ 4 в ветке 'terraform-04' и сделайте из него ветку ['terraform-05'](https://github.com/ua4wne/ter-hw-04/tree/terraform-05).
 
-![module](task2/module.png)
+![branch3](task2/branch5.png)
+![checkout](task2/checkout.png)
 
-2. Вы должны передать в модуль [переменные](./src/vpc/variables.tf) с названием сети, zone и v4_cidr_blocks.
+2. Повторите демонстрацию лекции: настройте YDB, S3 bucket, yandex service account, права доступа и мигрируйте state проекта в S3 с блокировками. Предоставьте скриншоты процесса в качестве ответа.
 
-![vars](task2/vars.png)
+![service_acc](task2/service_acc.png)
+![new_key](task2/new_key.png)
+![s3](task2/s3.png)
+![s3_acl](task2/s3_acl.png)
+![init](task2/init.png)
 
-3. Модуль должен возвращать в root module с помощью [output](./src/vpc/output.tf) информацию о yandex_vpc_subnet. Пришлите скриншот информации из terraform console о своем модуле.
+>Выполним команду terraform apply, видим, что файл terraform.tfstate появился в нашем бакете S3
 
+![tfstate](task2/tfstate.png)
+
+> Настраиваем YDB
+
+![ydb](task2/ydb.png)
+![ydb_acl](task2/ydb_acl.png)
+![table](task2/table.png)
+
+3. Закоммитьте в ветку 'terraform-05' все изменения.
+4. Откройте в проекте terraform console, а в другом окне из этой же директории попробуйте запустить terraform apply.
+
+![reconfig](task2/reconfig.png)
 ![console](task2/console.png)
+![plan](task2/plan.png)
 
-4. Замените ресурсы yandex_vpc_network и yandex_vpc_subnet созданным модулем. Не забудьте передать необходимые параметры сети из модуля vpc в модуль с виртуальной машиной.
+5. Пришлите ответ об ошибке доступа к state.
 
-![res1](task2/res1.png)
-![res2](task2/res2.png)
+>Error message: operation error DynamoDB: PutItem, https response error StatusCode: 400, RequestID: bfab7804-4815-43d5-bd7f-1fef87b38c4d, ConditionalCheckFailedException: Condition not satisfied
 
-5. Сгенерируйте документацию к модулю с помощью terraform-docs.
+6. Принудительно разблокируйте state. Пришлите команду и вывод.
 
->Ответ: [документацию](./src/vpc/README.md) получил с помощью команды `docker run --rm --volume "$(pwd):/terraform-docs" -u $(id -u) quay.io/terraform-docs/terraform-docs:0.19.0 markdown /terraform-docs > README.md`
+>`terraform force-unlock c3fadfce-17bd-c90d-b436-692c7b0a0d1b`
 
+![unlock](task2/unlock.png)
 
 ## Задача 3
 
-1. Выведите список ресурсов в стейте.
+1. Сделайте в GitHub из ветки ['terraform-05'](https://github.com/ua4wne/ter-hw-04/tree/terraform-05) новую ветку ['terraform-hotfix'](https://github.com/ua4wne/ter-hw-04/tree/terraform-hotfix).
 
-![state](task3/state.png)
+>`git checkout -b terraform-hotfix`
 
-2. Полностью удалите из стейта модуль vpc.
+![hotfix](task3/hotfix.png)
 
-![rm_vpc](task3/rm_vpc.png)
 
-3. Полностью удалите из стейта модуль vm.
-
-![rm_vm](task3/rm_vm.png)
-
-4. Импортируйте всё обратно. Проверьте terraform plan. Значимых(!!) изменений быть не должно. Приложите список выполненных команд и скриншоты процессов.
-
-![import_vpc](task3/import_vpc.png)
-![import_sub](task3/import_sub.png)
-![import_vm](task3/import_vm.png)
-![plan](task3/plan.png)
-
-## Задача 4*
-
-1. Измените модуль [vpc](./src/vpc/main.tf) так, чтобы он мог создать подсети во всех зонах доступности, переданных в переменной типа list(object) при вызове модуля.
-
-![vpc_prod](task4/vpc_prod.png)
-![apply](task4/apply.png)
-![result](task4/result.png)
-
-## Задача 5*
-
-1. Напишите модуль для создания кластера managed БД Mysql в Yandex Cloud с одним или несколькими(2 по умолчанию) хостами в зависимости от переменной HA=true или HA=false. Используйте ресурс yandex_mdb_mysql_cluster: передайте имя кластера и id сети.
-
->Ответ: модуль [mysql_cluster](./task5/mysql_cluster/)
-
-2. Напишите модуль для создания базы данных и пользователя в уже существующем кластере managed БД Mysql. Используйте ресурсы yandex_mdb_mysql_database и yandex_mdb_mysql_user: передайте имя базы данных, имя пользователя и id кластера при вызове модуля.
-
->Ответ: модуль [mysql_db](./task5/mysql_db/)
-
-3. Используя оба модуля, создайте кластер example из одного хоста, а затем добавьте в него БД test и пользователя app. Затем измените переменную и превратите сингл хост в кластер из 2-х серверов.
-
->Ответ: [main.tf](./task5/main.tf)
-
-4. Предоставьте план выполнения и по возможности результат. Сразу же удаляйте созданные ресурсы, так как кластер может стоить очень дорого. Используйте минимальную конфигурацию.
-
-![plan1](task5/plan1.png)
-![cluster1](task5/cluster1.png)
-![db](task5/db.png)
-
-![one host](task5/false_ha.png)
-![host1](task5/host1.png)
-
-![two host](task5/true_ha.png)
-![plan2](task5/plan2.png)
-![host2](task5/host2.png)
-
-## Задача 6*
-
-1. Используя готовый yandex cloud terraform module и пример его вызова(examples/simple-bucket): https://github.com/terraform-yc-modules/terraform-yc-s3 . Создайте и не удаляйте для себя s3 бакет размером 1 ГБ(это бесплатно), он пригодится вам в ДЗ к 5 лекции.
-
->Ответ: [решение](./task6/)
-
-![apply](task6/apply.png)
-![backet](task6/backet.png)
-
-## Задача 7*
-
-1. Разверните у себя локально vault, используя [docker-compose.yml](./task7/docker-compose.yml) в проекте.
-
-2. Для входа в web-интерфейс и авторизации terraform в vault используйте токен "education".
-
-![login](task7/login.png)
-
-3. Создайте новый секрет по пути http://127.0.0.1:8200/ui/vault/secrets/secret/create Path: example secret data key: test secret data value: congrats!
-
-![secret](task7/secret.png)
-
-4. Считайте этот секрет с помощью terraform и выведите его в output.
-
->Ответ [main.tf](./task7/main.tf)
-
-![read](task7/read.png)
-
-5. Попробуйте самостоятельно разобраться в документации и записать новый секрет в vault с помощью terraform.
-
->Ответ [main.tf](./task7/main.tf)
-
-![apply](task7/apply.png)
-![secrets](task7/secrets.png)
-![new](task7/new.png)
