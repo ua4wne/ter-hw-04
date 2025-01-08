@@ -87,10 +87,21 @@
 
 ## Задача 4
 
+1. Напишите [переменные с валидацией](src/variables.tf) и протестируйте их, заполнив default верными и неверными значениями. Предоставьте скриншоты проверок из terraform console.
 
+- type=string, description="ip-адрес" — проверка, что значение переменной содержит верный IP-адрес с помощью функций cidrhost() или regex(). Тесты: "192.168.0.1" и "1920.1680.0.1";
 
+![one_ip](task4/one_ip.png)
+![plan](task4/plan.png)
+![bad_one_ip](task4/bad_one_ip.png)
+![error_plan](task4/error_plan.png)
 
+- type=list(string), description="список ip-адресов" — проверка, что все адреса верны. Тесты: ["192.168.0.1", "1.1.1.1", "127.0.0.1"] и ["192.168.0.1", "1.1.1.1", "1270.0.0.1"].
 
+![list_ip](task4/list_ip.png)
+![plan2](task4/plan2.png)
+![bad_list_ip](task4/bad_list_ip.png)
+![error_plan2](task4/error_plan2.png)
 
-
+## Задача 5*
 

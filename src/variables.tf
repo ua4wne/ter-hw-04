@@ -26,3 +26,27 @@ variable packages {
   type    = list(string)
   default = ["vim", "nginx"]
 }
+
+# variable ip_address {
+#   description = "ip address"
+#   type = string
+#   default = "192.168.0.1"
+
+#   validation {
+#     condition     = can(regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$", var.ip_address))
+#     error_message = "The IP address is not valid. Please provide a valid IP address."
+#   }
+# }
+
+# variable "ip_addresses" {
+#   description = "list of ip address"
+#   type = list(string)
+#   default = ["192.168.0.1", "1.1.1.1", "127.0.0.1"]
+
+#   validation {
+#     condition = alltrue([
+#       for a in var.ip_addresses : can(regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$", a))
+#     ])
+#     error_message = "All elements must be valid IPv4 addresses."
+#   }
+# }
