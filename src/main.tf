@@ -7,7 +7,7 @@ module "vpc_prod" {
 }
 
 module "test-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=f96532a351d512ef1888e6c12a3d47c65fa10479"
   env_name       = "develop"
   network_id     = module.vpc_prod.network_id[0]
   subnet_zones   = ["ru-central1-a"]
@@ -30,7 +30,7 @@ module "test-vm" {
 }
 
 module "example-vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=f96532a351d512ef1888e6c12a3d47c65fa10479"
   env_name       = "stage"
   network_id     = module.vpc_prod.network_id[0]
   subnet_zones   = ["ru-central1-a"]
@@ -57,8 +57,8 @@ data "template_file" "cloudinit" {
   template = file("./cloud-init.yml")
 
   vars = {
-    username       = var.username
-    ssh_public_key = file(var.ssh_public_key[0])
-    packages       = jsonencode(var.packages)
+    username         = var.username
+    ssh_public_key   = file(var.ssh_public_key[0])
+    packages         = jsonencode(var.packages)
   }
 }

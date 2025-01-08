@@ -68,4 +68,15 @@
 
 ![hotfix](task3/hotfix.png)
 
+2. Проверье код с помощью tflint и checkov, исправьте все предупреждения и ошибки в 'terraform-hotfix', сделайте коммит.
+
+![tflint](task3/tflint.png)
+
+>Исправляем найденные ошибки и снова проверяем код
+
+![check](task3/check.png)
+![checkov](task3/checkov.png)
+
+>Как видим - ошибок больше нет! Делаем коммит
+
 

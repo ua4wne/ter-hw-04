@@ -1,28 +1,33 @@
 terraform {
   backend "s3" {
-    shared_credentials_files = [ "~/.aws/credentials" ]
-    shared_config_files = [ "~/.aws/config" ]
-    profile = "default"
-    region = "ru-central1"
+    shared_credentials_files = ["~/.aws/credentials"]
+    shared_config_files      = ["~/.aws/config"]
+    profile                  = "default"
+    region                   = "ru-central1"
 
     bucket = "rai-bucket-hopy82he"
-    key = "develop/terraform.tfstate"
+    key    = "develop/terraform.tfstate"
 
-    skip_region_validation = true
+    skip_region_validation      = true
     skip_credentials_validation = true
-    skip_requesting_account_id = true
-    skip_s3_checksum = true
+    skip_requesting_account_id  = true
+    skip_s3_checksum            = true
 
     endpoints = {
       dynamodb = "https://docapi.serverless.yandexcloud.net/ru-central1/b1gp8lr5vq4et15ermu8/etnhj2dhm1vm82hv4fa7"
-      s3 = "https://storage.yandexcloud.net"
+      s3       = "https://storage.yandexcloud.net"
     }
 
     dynamodb_table = "tfstate-lock-develop"
   }
   required_providers {
     yandex = {
-      source = "yandex-cloud/yandex"
+      source           = "yandex-cloud/yandex"
+      version = "~>0.135.0"
+    }
+    template = {
+      source = "hashicorp/template"
+      version = "~>2.2.0"
     }
   }
   required_version = ">=1.8.4"
