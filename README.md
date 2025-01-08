@@ -105,3 +105,24 @@
 
 ## Задача 5*
 
+1. Напишите переменные с валидацией:
+
+- type=string, description="любая строка" — проверка, что строка не содержит символов верхнего регистра;
+
+![var](task5/var.png)
+![console](task5/console.png)
+![bad_var](task5/bad_var.png)
+![error](task5/error.png)
+
+- type=object — проверка, что одно из значений равно true, а второе false, т. е. не допускается false false и true true:
+
+![map](task5/map.png)
+![console](task5/map_console.png)
+![bad_map](task5/bad_map.png)
+![error](task5/bad_map_console.png)
+
+## Задача 6*
+
+## Задача 7*
+
+1. Настройте отдельный terraform root модуль, который будет создавать YDB, s3 bucket для tfstate и сервисный аккаунт с необходимыми правами.
