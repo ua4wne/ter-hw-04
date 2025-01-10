@@ -68,4 +68,68 @@
 
 ![hotfix](task3/hotfix.png)
 
+2. Проверье код с помощью tflint и checkov, исправьте все предупреждения и ошибки в 'terraform-hotfix', сделайте коммит.
 
+![tflint](task3/tflint.png)
+
+>Исправляем найденные ошибки и снова проверяем код
+
+![check](task3/check.png)
+![checkov](task3/checkov.png)
+
+>Как видим - ошибок больше нет! Делаем коммит
+
+3. Откройте новый pull request 'terraform-hotfix' --> 'terraform-05'.
+4. Вставьте в комментарий PR результат анализа tflint и checkov, план изменений инфраструктуры из вывода команды terraform plan.
+5. Пришлите ссылку на PR для ревью. Вливать код в 'terraform-05' не нужно.
+
+>Ответ: [ссылка](https://github.com/ua4wne/ter-hw-04/pull/1)
+
+## Задача 4
+
+1. Напишите [переменные с валидацией](src/variables.tf) и протестируйте их, заполнив default верными и неверными значениями. Предоставьте скриншоты проверок из terraform console.
+
+- type=string, description="ip-адрес" — проверка, что значение переменной содержит верный IP-адрес с помощью функций cidrhost() или regex(). Тесты: "192.168.0.1" и "1920.1680.0.1";
+
+![one_ip](task4/one_ip.png)
+![plan](task4/plan.png)
+![bad_one_ip](task4/bad_one_ip.png)
+![error_plan](task4/error_plan.png)
+
+- type=list(string), description="список ip-адресов" — проверка, что все адреса верны. Тесты: ["192.168.0.1", "1.1.1.1", "127.0.0.1"] и ["192.168.0.1", "1.1.1.1", "1270.0.0.1"].
+
+![list_ip](task4/list_ip.png)
+![plan2](task4/plan2.png)
+![bad_list_ip](task4/bad_list_ip.png)
+![error_plan2](task4/error_plan2.png)
+
+## Задача 5*
+
+1. Напишите переменные с валидацией:
+
+- type=string, description="любая строка" — проверка, что строка не содержит символов верхнего регистра;
+
+![var](task5/var.png)
+![console](task5/console.png)
+![bad_var](task5/bad_var.png)
+![error](task5/error.png)
+
+- type=object — проверка, что одно из значений равно true, а второе false, т. е. не допускается false false и true true:
+
+![map](task5/map.png)
+![console](task5/map_console.png)
+![bad_map](task5/bad_map.png)
+![error](task5/bad_map_console.png)
+
+## Задача 6*
+
+## Задача 7*
+
+1. Настройте отдельный terraform root модуль, который будет создавать YDB, s3 bucket для tfstate и сервисный аккаунт с необходимыми правами.
+
+>Ответ: [task7](./task7/)
+
+![apply](task7/apply.png)
+![sa](task7/sa.png)
+![backet](task7/backet.png)
+![ydb](task7/ydb.png)
