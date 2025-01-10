@@ -11,17 +11,6 @@ resource "yandex_resourcemanager_folder_iam_member" "editor" {
   member     = "serviceAccount:${yandex_iam_service_account.sa.id}"
 }
 
-# resource "yandex_iam_service_account" "sa" {
-#   folder_id = var.folder_id
-#   name      = "sa-test"
-# }
-
-# resource "yandex_resourcemanager_folder_iam_member" "sa-editor" {
-#   folder_id = var.folder_id
-#   role      = "storage.editor"
-#   member    = "serviceAccount:${yandex_iam_service_account.sa.id}"
-# }
-
 resource "yandex_iam_service_account_static_access_key" "sa-static-key" {
   service_account_id = yandex_iam_service_account.sa.id
   description        = "Static access key for object storage"
@@ -42,13 +31,6 @@ resource "random_string" "unique_id" {
   numeric = true
   special = false
 }
-
-# module "s3" {
-#   source = "git@github.com:ua4wne/terraform-yc-s3.git?ref=master"
-
-#   bucket_name = "tf-bucket-${random_string.unique_id.result}"
-#   max_size    = 1073741824 // 1Gb
-# }
 
 resource "yandex_ydb_database_serverless" "db_tfstate" {
   name                = "test-ydb-serverless"
